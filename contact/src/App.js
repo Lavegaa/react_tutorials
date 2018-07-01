@@ -21,11 +21,28 @@ class App extends Component {
     });
   }
 
-  handleRemove = (id) => {
+  handleRemove = (id) => {    //filter를 통한 삭제기능
     const {information} = this.state;
     this.setState({
-      information: information.filter(info => info.id !== id)
+      information: information.filter(info => info.id !== id)   //파라미터로 받은id값 이외의 것만 출력 -> 파라미터로 받은 id만 삭제
     });
+  }
+
+  handleUpdate = (id,data) => {         //해당 수정을 위해 id값과 그에 따른 내용을 수정하는 함수
+    const {information} = this.state;
+    this.setState({
+      information: information.map(
+        info => {
+          if(info.id === id){
+            return{
+              id,
+              ...data,
+            };
+          }
+          return info;
+        }
+      )
+    })
   }
 
   render() {
@@ -37,6 +54,7 @@ class App extends Component {
         <PhoneInfoList 
           data={this.state.information}
           onRemove={this.handleRemove}
+          onUpdate={this.handleUpdate}
         />
         
         
