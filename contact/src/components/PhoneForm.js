@@ -14,9 +14,18 @@ class PhoneForm extends Component {
         });
     }
 
+    handelSubmit = (e) =>{
+        e.preventDefault();     //submit 시 새로고침을 막아줌
+        this.props.onCreate(this.state);    //App.js에서 onCreate로 보내준 handleCreate를 사용 data로 state내부의 정보를 보냄
+        this.setState({
+            name:'',
+            phone:'',
+        })
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handelSubmit}>
                 <input 
                     name="name"
                     placeholder="이름" 
@@ -29,9 +38,7 @@ class PhoneForm extends Component {
                     onChange={this.handleChange}
                     value={this.state.phone}
                 />
-                <div>
-                    {this.state.name}   {this.state.phone}
-                </div>
+                <button type="submit">등록</button>
 
             </form>
         );
