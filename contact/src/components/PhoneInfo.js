@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 class PhoneInfo extends Component {
 
+    handleRemove = () => {
+        const { info, onRemove } = this.props;
+        onRemove(info.id);
+    }
+
     render() {
         //비구조화 할당 -> 배열이나 객체에서 에서 원하는 값 추출
         //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
@@ -16,6 +21,7 @@ class PhoneInfo extends Component {
             <div style={style}>
                 <div><b>{name}</b></div>    
                 <div>{phone}</div>
+                <button onClick={this.handleRemove}>삭제</button>
             </div>
         );
     }
