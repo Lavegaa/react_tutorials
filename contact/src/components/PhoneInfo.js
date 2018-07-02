@@ -13,7 +13,7 @@ class PhoneInfo extends Component {
             return true;
         }
         return this.props.info !== nextProps.info;
-    }
+    }   //수정된 부분만 리랜더링함
     
 
     handleToggleEdit = () => {                  //입력모드인지 수정모드인지 판단하는 함수
@@ -57,9 +57,7 @@ class PhoneInfo extends Component {
         const style ={
             border: '1px solid black',
             padding: '8px',
-            margin: '8px auto',
-            width: '70%',
-
+            margin: '8px'
         }
         return (
             <div style={style}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class PhoneForm extends Component {
-
+    input = React.createRef();      //DOM에 직접 접근하기 위한 Ref사용
     state={
         name: '',
         phone:'',
@@ -21,22 +21,20 @@ class PhoneForm extends Component {
             name:'',
             phone:'',
         })
+        this.input.current.focus();     //createRef를 할 때 반드시 current로 접근
     }
 
    
 
     render() {
-        const style={
-            width: '70%',
-            margin: '8px auto'
-        }
         return (
-            <form onSubmit={this.handelSubmit} style={style}>
+            <form onSubmit={this.handelSubmit}>
                 <input 
                     name="name"
                     placeholder="이름" 
                     onChange={this.handleChange} 
                     value={this.state.name}
+                    ref={this.input}        //ref를 선언해줌
                 />
                 <input 
                     name="phone"

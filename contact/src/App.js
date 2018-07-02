@@ -4,10 +4,33 @@ import PhoneInfoList from './components/PhoneInfoList';
 
 
 class App extends Component {
-  id = 0;
-
+  id = 3;
+  
   state ={
-    information: [],
+    information: [
+        {
+          id: 0,
+          name: '김찬호',
+          phone: '010-5475-0784'
+        },
+        {
+          id: 1,
+          name: '김찬',
+          phone: '010-5475-0744'
+        },
+        {
+          id: 2,
+          name: '김',
+          phone: '010-5475-1234'
+        },
+    ],
+    keyword: '',      //검색 시 사용하기 위한 빈 keyword
+  }
+
+  handleChange = (e) => {     //검색에 사용할 input에 관한 함수
+    this.setState({
+      keyword: e.target.value
+    })
   }
 
   handleCreate = (data) => {
@@ -46,13 +69,25 @@ class App extends Component {
   }
 
   render() {
+    const style={
+      width: '70%',
+      margin: 'auto'
+    }
     return (
 
 
-      <div className="App">
+      <div className="App" style={style}>
         <PhoneForm onCreate={this.handleCreate}/>
+        <input 
+          value={this.state.keyword}
+          onChange={this.handleChange}
+          placeholder="검색..."
+          
+        />
         <PhoneInfoList 
-          data={this.state.information}
+          data={this.state.information.filter(
+            info => info.name.indexOf(this.state.keyword)>-1        //indexOf를 이용한 filter
+          )}
           onRemove={this.handleRemove}
           onUpdate={this.handleUpdate}
         />
