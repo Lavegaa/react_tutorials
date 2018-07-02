@@ -23,9 +23,15 @@ class PhoneForm extends Component {
         })
     }
 
+   
+
     render() {
+        const style={
+            width: '70%',
+            margin: '8px auto'
+        }
         return (
-            <form onSubmit={this.handelSubmit}>
+            <form onSubmit={this.handelSubmit} style={style}>
                 <input 
                     name="name"
                     placeholder="이름" 

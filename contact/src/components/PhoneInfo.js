@@ -8,6 +8,14 @@ class PhoneInfo extends Component {
         phone: ''
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.state !== nextState){
+            return true;
+        }
+        return this.props.info !== nextProps.info;
+    }
+    
+
     handleToggleEdit = () => {                  //입력모드인지 수정모드인지 판단하는 함수
 
         const{ info, onUpdate } = this.props;
@@ -49,7 +57,9 @@ class PhoneInfo extends Component {
         const style ={
             border: '1px solid black',
             padding: '8px',
-            margin: '8px',
+            margin: '8px auto',
+            width: '70%',
+
         }
         return (
             <div style={style}>
